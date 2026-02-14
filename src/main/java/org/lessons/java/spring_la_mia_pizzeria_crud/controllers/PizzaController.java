@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/pizzas")
@@ -65,6 +66,30 @@ public class PizzaController {
     public String postStore(@Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "/pizzas/create";
+        }
+
+        repo.save(pizzaForm);
+        return "redirect:/pizzas";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String getEdit(Model model, @PathVariable("id") Integer pizzaId) {
+        Optional<Pizza> pizza = repo.findById(pizzaId);
+
+        if (pizza.isEmpty()) {
+            model.addAttribute("pizza", new Pizza());
+            return "redirect:/pizzas/create";
+        }
+
+        model.addAttribute("pizza", pizza.get());
+        return "/pizzas/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String postUpdate(@Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult,
+            Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/pizzas/edit";
         }
 
         repo.save(pizzaForm);

@@ -7,9 +7,9 @@
     <div th:replace="~{fragments/header :: header}" />
 
     <main class="container">
-        <h3>Crea una nuova pizza</h3>
+        <h3>Modifica [[${pizza.name}]]</h3>
 
-        <form th:action="@{/pizzas/create}" method="post" th:object="${pizza}">
+        <form th:action="@{/pizzas/edit/}+${pizza.id}" method="post" th:object="${pizza}">
             <div class="mb-3">
                 <label class="form-label" for="input-name">Nome: </label>
                 <input id="input-name" class="form-control" type="text" th:field="*{name}" th:errorClass="is-invalid">
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" type="submit">Crea</button>
+            <button class="btn btn-primary" type="submit">Modifica</button>
         </form>
 
     </main>
