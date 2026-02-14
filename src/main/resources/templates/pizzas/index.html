@@ -8,9 +8,20 @@
 
     <main class="container">
         <h3>Le Pizze della casa</h3>
-        <form th:action="@{pizzas}">
-            <input type="text" th:name="q" th:value="${query}">
-        </form>
+
+        <div class="my-3">
+            <div class="d-flex">
+                <form class="mb-3" th:action="@{/pizzas}">
+                    <input id="search-bar" class="form-control" type="text" th:name="q" th:value="${query}"
+                        placeholder="Cerca...">
+                </form>
+                <div class="ms-3">
+                    <a class="btn btn-primary" th:href="@{/pizzas/create}">Crea una nuova pizza</a>
+                </div>
+
+            </div>
+        </div>
+
 
         <div th:unless="${pizzas.size() > 0}">Non ci sono pizze disponibili</div>
 

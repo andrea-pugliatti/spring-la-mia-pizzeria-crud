@@ -56,7 +56,7 @@ Nella index creiamo ovviamente il bottone “Crea nuova pizza” che ci porta a 
 Ricordiamoci che l’utente potrebbe sbagliare inserendo dei dati: gestiamo quindi la validazione! Ad esempio verifichiamo che :
 
     i dati della pizza siano tutti presenti
-    il campi di testo non superino una certa lunghezza 
+    il campi di testo non superino una certa lunghezza
     il prezzo abbia un valore valido (ha senso una pizza con prezzo minore o uguale a zero?)
 
 ### Step 2

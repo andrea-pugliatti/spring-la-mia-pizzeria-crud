@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/pizzas")
@@ -77,7 +76,7 @@ public class PizzaController {
     // List<Pizza> list = repo.findByNameContaining(name);
     // model.addAttribute("pizzas", list);
     // model.addAttribute("query", name);
-    // return "pizzas/index";
+    // return "redirect:/pizzas?q=" + name;
     // }
 
 }
