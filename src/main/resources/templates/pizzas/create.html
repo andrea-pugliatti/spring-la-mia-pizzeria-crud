@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/fragments :: head('Nuova pizza')}" />
+
+<body>
+    <div th:replace="~{fragments/header :: header}" />
+
+    <main class="container">
+        <h3>Aggiungi una pizza</h3>
+
+        <form th:action="@{/pizzas/create}" method="post" th:object="${pizza}">
+            <div class="mb-3">
+                <label class="form-label" for="input-name">Nome: </label>
+                <input id="input-name" class="form-control" type="text" th:field="*{name}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="input-description">Descrizione: </label>
+                <textarea id="input-description" class="form-control" type="text" th:field="*{description}"
+                    rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="input-image">Immagine / url: </label>
+                <input id="input-image" class="form-control" type="text" th:field="*{image}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="input-price">Prezzo: </label>
+                <input id="input-price" class="form-control" type="text" th:field="*{price}">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Invia</button>
+        </form>
+
+    </main>
+
+    <div th:replace="~{fragments/fragments :: bootstrap}" />
+</body>
+
+</html>
