@@ -9,7 +9,7 @@
     <main class="container">
         <h3>Modifica [[${pizza.name}]]</h3>
 
-        <form th:action="@{/pizzas/edit/}+${pizza.id}" method="post" th:object="${pizza}">
+        <form th:action="@{/pizzas/edit/{id}(id = ${pizza.id})}" method="post" th:object="${pizza}">
             <div class="mb-3">
                 <label class="form-label" for="input-name">Nome: </label>
                 <input id="input-name" class="form-control" type="text" th:field="*{name}" th:errorClass="is-invalid">
