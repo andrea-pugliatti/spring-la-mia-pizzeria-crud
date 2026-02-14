@@ -10,6 +10,8 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "pizzas")
@@ -19,7 +21,8 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "Il nome deve essere inserito!")
+    @Size(max = 200, message = "Il nome è troppo lungo!")
     private String name;
 
     @Lob
@@ -27,7 +30,8 @@ public class Pizza {
 
     private String image;
 
-    @NotNull
+    @Positive(message = "Il prezzo deve essere positivo!")
+    @NotNull(message = "Il prezzo deve essere inserito!")
     private BigDecimal price;
 
     public Integer getId() {
