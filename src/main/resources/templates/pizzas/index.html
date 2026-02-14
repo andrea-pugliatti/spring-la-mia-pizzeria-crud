@@ -7,7 +7,10 @@
     <div th:replace="~{fragments/header :: header}" />
 
     <main class="container">
-        <h1>Le Pizze della casa</h1>
+        <h3>Le Pizze della casa</h3>
+        <form th:action="@{pizzas}">
+            <input type="text" th:name="q" th:value="${query}">
+        </form>
 
         <div th:unless="${pizzas.size() > 0}">Non ci sono pizze disponibili</div>
 

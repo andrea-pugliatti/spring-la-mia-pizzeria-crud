@@ -21,9 +21,17 @@ public class PizzaController {
     private PizzaRepository repo;
 
     @GetMapping
-    public String getIndex(Model model) {
-        List<Pizza> list = repo.findAll();
+    public String getIndex(Model model, @RequestParam(value = "q", required = false) String name) {
+        List<Pizza> list = null;
+
+        if (name == null) {
+            list = repo.findAll();
+        } else {
+            list = repo.findByNameContaining(name);
+        }
+
         model.addAttribute("pizzas", list);
+        model.addAttribute("query", name);
         return "pizzas/index";
     }
 
@@ -39,11 +47,12 @@ public class PizzaController {
         return "pizzas/show";
     }
 
-    @GetMapping("/search")
-    public String getIndex(Model model, @RequestParam("q") String name) {
-        List<Pizza> list = repo.findByNameContaining(name);
-        model.addAttribute("pizzas", list);
-        return "pizzas/index";
-    }
+    // @GetMapping("/search")
+    // public String search(Model model, @RequestParam("q") String name) {
+    // List<Pizza> list = repo.findByNameContaining(name);
+    // model.addAttribute("pizzas", list);
+    // model.addAttribute("query", name);
+    // return "pizzas/index";
+    // }
 
 }
