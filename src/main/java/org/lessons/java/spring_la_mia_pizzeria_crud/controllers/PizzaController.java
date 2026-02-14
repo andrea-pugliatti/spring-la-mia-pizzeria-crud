@@ -1,5 +1,8 @@
 package org.lessons.java.spring_la_mia_pizzeria_crud.controllers;
 
+import java.util.List;
+
+import org.lessons.java.spring_la_mia_pizzeria_crud.models.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,8 @@ public class PizzaController {
 
     @GetMapping
     public String getIndex(Model model) {
+        List<Pizza> list = repo.findAll();
+        model.addAttribute("pizzas", list);
         return "pizzas/index";
     }
 

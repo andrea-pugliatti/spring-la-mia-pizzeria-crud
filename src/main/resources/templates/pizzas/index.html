@@ -5,7 +5,22 @@
 
 <body>
     <main class="container">
-        <h1>Funziona? Pizza</h1>
+        <h1>Le Pizze della casa</h1>
+
+        <div th:unless="${pizzas.size() > 0}">Non ci sono pizze disponibili</div>
+
+        <th:block th:if="${pizzas.size() > 0}">
+
+            <ul th:each="pizza: ${pizzas}" th:object="${pizza}">
+                <li>
+                    <img th:src="*{image}">
+                    <span class="fw-bold">[[*{name}]]</span>
+                    <span>[[*{price}]]</span>
+                    <span>[[*{description}]]</span>
+                </li>
+            </ul>
+        </th:block>
+
     </main>
 
     <div th:replace="~{fragments/fragments :: bootstrap}" />
