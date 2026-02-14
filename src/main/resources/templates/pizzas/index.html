@@ -4,6 +4,8 @@
 <head th:replace="~{fragments/fragments :: head('Pizza')}" />
 
 <body>
+    <div th:replace="~{fragments/header :: header}" />
+
     <main class="container">
         <h1>Le Pizze della casa</h1>
 
@@ -15,8 +17,9 @@
                 <li>
                     <img th:src="*{image}">
                     <span class="fw-bold">[[*{name}]]</span>
-                    <span>[[*{price}]]</span>
+                    <span>€[[*{price}]]</span>
                     <span>[[*{description}]]</span>
+                    <a th:href="|pizzas/*{id}|">Vai alla pizza</a>
                 </li>
             </ul>
         </th:block>
