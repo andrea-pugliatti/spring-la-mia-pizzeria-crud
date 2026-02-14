@@ -1,6 +1,7 @@
 package org.lessons.java.spring_la_mia_pizzeria_crud.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.lessons.java.spring_la_mia_pizzeria_crud.models.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequestMapping("/pizzas")
@@ -24,4 +26,15 @@ public class PizzaController {
         return "pizzas/index";
     }
 
+    @GetMapping("/{id}")
+    public String getShow(Model model, @PathVariable("id") Integer pizzaId) {
+        Optional<Pizza> pizza = repo.findById(pizzaId);
+
+        if (pizza.isEmpty()) {
+            return "pizzas/404";
+        }
+
+        model.addAttribute("pizza", pizza.get());
+        return "pizzas/show";
+    }
 }
