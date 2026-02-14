@@ -33,7 +33,11 @@
                     <span class="fw-bold">[[*{name}]]</span>
                     <span>€[[*{price}]]</span>
                     <span>[[*{description}]]</span>
-                    <a th:href="|pizzas/*{id}|">Vai alla pizza</a>
+                    <a class="btn btn-primary btn-sm" th:href="@{/pizzas/{id}(id = *{id})}">Scopri</a>
+                    <a class="btn btn-success btn-sm" th:href="@{/pizzas/edit/{id}(id = *{id})}">Modifica</a>
+                    <form style="display: inline;" th:action="@{/pizzas/delete/{id}(id = *{id})}" method="post">
+                        <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                    </form>
                 </li>
             </ul>
         </th:block>
