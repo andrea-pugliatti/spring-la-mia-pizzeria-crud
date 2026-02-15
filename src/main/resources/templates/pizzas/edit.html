@@ -7,9 +7,9 @@
     <div th:replace="~{fragments/header :: header('')}" />
 
     <main class="container">
-        <h3>Modifica [[${pizza.name}]]</h3>
+        <h3 class="text-center my-3">Modifica [[${pizza.name}]]</h3>
 
-        <form th:action="@{/pizzas/edit/{id}(id = ${pizza.id})}" method="post" th:object="${pizza}">
+        <form class="px-5" th:action="@{/pizzas/edit/{id}(id = ${pizza.id})}" method="post" th:object="${pizza}">
             <div class="mb-3">
                 <label class="form-label" for="input-name">Nome: </label>
                 <input id="input-name" class="form-control" type="text" th:field="*{name}" th:errorClass="is-invalid">
