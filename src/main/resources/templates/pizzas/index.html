@@ -7,14 +7,16 @@
     <div th:replace="~{fragments/header :: header}" />
 
     <main class="container">
-        <h3>Le Pizze della casa</h3>
+        <h3 class="my-3">Le Pizze della casa</h3>
 
         <div class="my-3">
-            <div class="d-flex">
-                <form class="mb-3" th:action="@{/pizzas}">
+            <div class="d-flex justify-content-between">
+                <form class="d-flex mb-3" th:action="@{/pizzas}">
                     <input id="search-bar" class="form-control" type="text" th:name="q" th:value="${query}"
                         placeholder="Cerca...">
+                    <button class="btn btn-primary ms-3" type="submit">Cerca</button>
                 </form>
+
                 <div class="ms-3">
                     <a class="btn btn-primary" th:href="@{/pizzas/create}">Crea una nuova pizza</a>
                 </div>
@@ -23,24 +25,27 @@
         </div>
 
 
-        <div th:unless="${pizzas.size() > 0}">Non ci sono pizze disponibili</div>
+        <div class="text-center fs-5 fw-700" th:unless="${pizzas.size() > 0}">Non ci sono pizze disponibili</div>
 
-        <th:block th:if="${pizzas.size() > 0}">
+        <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-4" th:if="${pizzas.size() > 0}">
 
-            <ul th:each="pizza: ${pizzas}" th:object="${pizza}">
-                <li>
-                    <img th:src="*{image}">
-                    <span class="fw-bold">[[*{name}]]</span>
-                    <span>€[[*{price}]]</span>
-                    <span>[[*{description}]]</span>
-                    <a class="btn btn-primary btn-sm" th:href="@{/pizzas/{id}(id = *{id})}">Scopri</a>
-                    <a class="btn btn-success btn-sm" th:href="@{/pizzas/edit/{id}(id = *{id})}">Modifica</a>
-                    <form style="display: inline;" th:action="@{/pizzas/delete/{id}(id = *{id})}" method="post">
-                        <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
-                    </form>
-                </li>
-            </ul>
-        </th:block>
+            <div class="col" th:each="pizza: ${pizzas}" th:object="${pizza}">
+                <div class="card">
+                    <img class="card-img-top" th:src="*{image}">
+                    <div class="card-body">
+
+                        <div class="my-1 fs-5 fw-bold">[[*{name}]]</div>
+                        <div class="my-1">€[[*{price}]]</div>
+                        <!-- <div>[[*{description}]]</div> -->
+                        <a class="btn btn-primary btn-sm" th:href="@{/pizzas/{id}(id = *{id})}">Scopri</a>
+                        <a class="btn btn-success btn-sm" th:href="@{/pizzas/edit/{id}(id = *{id})}">Modifica</a>
+                        <form style="display: inline;" th:action="@{/pizzas/delete/{id}(id = *{id})}" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 
