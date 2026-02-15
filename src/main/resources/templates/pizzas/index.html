@@ -36,7 +36,6 @@
 
                         <div class="my-1 fs-5 fw-bold">[[*{name}]]</div>
                         <div class="my-1">€[[*{price}]]</div>
-                        <!-- <div>[[*{description}]]</div> -->
                         <a class="btn btn-primary btn-sm" th:href="@{/pizzas/{id}(id = *{id})}">Scopri</a>
                         <a class="btn btn-success btn-sm" th:href="@{/pizzas/edit/{id}(id = *{id})}">Modifica</a>
                         <form style="display: inline;" th:action="@{/pizzas/delete/{id}(id = *{id})}" method="post">
