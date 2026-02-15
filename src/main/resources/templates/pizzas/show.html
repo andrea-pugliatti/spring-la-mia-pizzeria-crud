@@ -18,12 +18,11 @@
                         <h3 class="card-title">[[${pizza.name}]]</h3>
                         <p class="card-text">€[[${pizza.price}]]</p>
                         <p class="card-text">[[${pizza.description}]]</p>
-                        <div>
-                            <a class="btn btn-success btn-sm" th:href="@{/pizzas/edit/{id}(id = *{id})}">Modifica</a>
-                            <form style="display: inline;" th:action="@{/pizzas/delete/{id}(id = *{id})}" method="post">
-                                <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
-                            </form>
 
+                        <div>
+                            <a class="btn btn-success btn-sm"
+                                th:href="@{/pizzas/edit/{id}(id = ${pizza.id})}">Modifica</a>
+                            <div th:replace="~{fragments/modal :: trigger(${pizza.id})}" />
                         </div>
 
                     </div>
@@ -31,6 +30,7 @@
 
             </div>
         </div>
+        <div th:replace="~{fragments/modal :: modal(${pizza.name}, ${pizza.id})}" />
     </main>
 
     <div th:replace="~{fragments/fragments :: bootstrap}" />
